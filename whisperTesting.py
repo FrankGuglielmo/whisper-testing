@@ -49,6 +49,12 @@ def transcribe(audioFile):
     options = whisper.DecodingOptions(fp16 = False)
     result = whisper.decode(model, mel, options)
 
+    audioFileRelativePath = audioFile.split("/")[-1]
+
+    #Write the result to a text file named afeter the audio file
+    with open(f"./results/{audioFileRelativePath}.txt", "w") as text_file:
+        text_file.write(pprint.pformat(result))
+
     # print the recognized text
     print(result.text)
 
@@ -59,5 +65,13 @@ def transcribe(audioFile):
 
 splitAudio("englishAndItalianAudio.m4a")
 transcribeAll()
+
+# remove all the files in results directory
+# for filename in os.listdir("./results"):
+#     if filename.endswith(".txt"):
+#         os.remove(f"./results/{filename}")
+#         continue
+#     else:
+#         continue
 
 
