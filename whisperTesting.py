@@ -36,7 +36,8 @@ import difflib
 import json
 import uuid
 
-torch.cuda.is_available()
+# uncomment if GPU is available
+# torch.cuda.is_available()
 
 transcription_map = {}
 
@@ -628,9 +629,10 @@ def get_non_silent_parts(intervals):
     return non_silent_parts
 
 
-torch.cuda.init()
-device = "cuda"
-model = whisper.load_model("small").to(device)
+# uncomment if using GPU
+# torch.cuda.init()
+# device = "cuda"
+# model = whisper.load_model("small").to(device)
 # files = ["silence_vale.mp3"]
 files = ["frank_guglielmo_mock_session.mp4", "valerio_mock_session.mp4"]
 # files = ["meetisilence.mp3"]
